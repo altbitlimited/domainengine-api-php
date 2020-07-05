@@ -1,0 +1,22 @@
+{
+    "name": "altbitlimited/domainengine-api-php",
+    "description": "PHP class facilitating use of the DomainEngine API",
+    "type": "library",
+    "require": {
+        "php": ">=7.0.0",
+        "guzzlehttp/guzzle": "^6.5"
+    },
+    "autoload": {
+        "psr-0": {
+            "DomainEngine": "src/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "altbitlimited",
+            "email": "kyle@altbit.co"
+        }
+    ],
+    "minimum-stability": "stable"
+}
