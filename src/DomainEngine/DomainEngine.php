@@ -16,19 +16,27 @@ class DomainEngine
     /** @var GuzzleHttp\Client $_client GuzzleHTTP client */
     private $_client;
 
+    /** @var string $_clientId Application Client ID */
     private $_clientId;
 
+    /** @var string $_clientId Application Client Secret */
     private $_clientSecret;
 
+    /** @var DomainEngineCacheInterface $_cache Class implementing DomainEngineCacheInterface interface*/
     private $_cache;
 
+    /** @var boolean $_cacheEnabled If cache should be used (if $_cache is set) */
     private $_cacheEnabled;
 
     /** @var array $_accessToken access token */
     private $_accessToken;
 
+
     /**
      * DomainEngine constructor.
+     * @param String $clientId Application Client ID
+     * @param String $clientSecret Application Client Secret
+     * @param DomainEngineCacheInterface|null $cache Class implementing DomainEngineCacheInterface interface
      */
     public function __construct(String $clientId, String $clientSecret, DomainEngineCacheInterface $cache = null)
     {
@@ -45,7 +53,7 @@ class DomainEngine
     }
 
     /**
-     * @return mixed
+     * @return mixed Returns access token set in class property
      */
     public function getAccessToken()
     {
@@ -53,7 +61,7 @@ class DomainEngine
     }
 
     /**
-     * @param string $accessToken
+     * @param string $accessToken Set access token in class property
      */
     public function setAccessToken(String $accessToken)
     {
@@ -61,9 +69,8 @@ class DomainEngine
     }
 
     /**
-     * @param $clientId
-     * @param $clientSecret
      * @return mixed
+     * @throws \Exception
      */
     public function getAccessTokenFromServer(){
         $accessToken = $this->_postRequest('/oauth/token', [
@@ -82,6 +89,9 @@ class DomainEngine
         return $accessToken['access_token'];
     }
 
+    /**
+     *
+     */
     public function getAndSetAccessToken(){
         //if cache is enabled then get from cache
         $cachedAccessToken = $this->_cacheEnabled ? $this->_cache->get() : null;
