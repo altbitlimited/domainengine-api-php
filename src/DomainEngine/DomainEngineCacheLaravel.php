@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: kylec
- * Date: 05/07/2020
- * Time: 15:33
- */
-
 namespace DomainEngine;
 
 use Illuminate\Support\Facades\Cache;
